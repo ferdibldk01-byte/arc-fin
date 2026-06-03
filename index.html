@@ -1,610 +1,548 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ARC FIN — Gizlilik Politikası / Privacy Policy</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background: #0a0a0a;
-            color: #e0e0e0;
-            line-height: 1.7;
-        }
-
-        /* Hero */
-        .hero {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            padding: 80px 20px 60px;
-            text-align: center;
-            border-bottom: 3px solid #e94560;
-        }
-        .hero-icon {
-            width: 80px; height: 80px;
-            background: linear-gradient(135deg, #e94560, #0f3460);
-            border-radius: 20px;
-            display: inline-flex; align-items: center; justify-content: center;
-            font-size: 36px; margin-bottom: 20px;
-            box-shadow: 0 8px 32px rgba(233,69,96,0.3);
-        }
-        .hero h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 8px;
-        }
-        .hero .subtitle {
-            font-size: 1.1rem;
-            color: #a0aec0;
-        }
-        .hero .meta {
-            margin-top: 24px;
-            display: flex;
-            justify-content: center;
-            gap: 32px;
-            flex-wrap: wrap;
-            font-size: 0.9rem;
-            color: #718096;
-        }
-        .hero .meta span { display: flex; align-items: center; gap: 6px; }
-
-        /* Language Toggle */
-        .lang-toggle {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            padding: 24px 20px;
-            background: #111;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid #222;
-        }
-        .lang-btn {
-            padding: 10px 28px;
-            border: 2px solid #333;
-            border-radius: 50px;
-            background: transparent;
-            color: #aaa;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: 500;
-        }
-        .lang-btn.active {
-            background: #e94560;
-            border-color: #e94560;
-            color: #fff;
-            box-shadow: 0 4px 16px rgba(233,69,96,0.3);
-        }
-        .lang-btn:hover:not(.active) {
-            border-color: #e94560;
-            color: #e94560;
-        }
-
-        /* Content */
-        .content { max-width: 800px; margin: 0 auto; padding: 40px 24px 80px; }
-        .lang-section { display: none; }
-        .lang-section.active { display: block; }
-
-        .section {
-            background: #141414;
-            border: 1px solid #1e1e1e;
-            border-radius: 16px;
-            padding: 32px;
-            margin-bottom: 24px;
-            transition: border-color 0.3s;
-        }
-        .section:hover { border-color: #e94560; }
-
-        .section-number {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 32px; height: 32px;
-            background: linear-gradient(135deg, #e94560, #c0392b);
-            border-radius: 8px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 12px;
-        }
-
-        .section h2 {
-            font-size: 1.35rem;
-            color: #fff;
-            margin-bottom: 16px;
-            font-weight: 600;
-        }
-
-        .section p {
-            color: #b0b0b0;
-            margin-bottom: 12px;
-            font-size: 0.95rem;
-        }
-
-        .section ul {
-            list-style: none;
-            padding: 0;
-        }
-        .section ul li {
-            padding: 10px 0 10px 24px;
-            position: relative;
-            color: #b0b0b0;
-            font-size: 0.95rem;
-            border-bottom: 1px solid #1a1a1a;
-        }
-        .section ul li:last-child { border-bottom: none; }
-        .section ul li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 18px;
-            width: 8px; height: 8px;
-            background: #e94560;
-            border-radius: 50%;
-        }
-        .section ul li strong { color: #e0e0e0; }
-
-        /* Data Table */
-        .data-grid {
-            display: grid;
-            gap: 12px;
-            margin-top: 12px;
-        }
-        .data-card {
-            background: #1a1a1a;
-            border: 1px solid #252525;
-            border-radius: 12px;
-            padding: 16px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-        .data-card .data-name {
-            font-weight: 600;
-            color: #e0e0e0;
-            font-size: 0.95rem;
-        }
-        .data-card .data-desc {
-            color: #888;
-            font-size: 0.85rem;
-            width: 100%;
-        }
-        .badge {
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-        .badge-optional { background: #1a3a2a; color: #4ade80; }
-        .badge-required { background: #3a1a1a; color: #f87171; }
-        .badge-noshare { background: #1a1a3a; color: #60a5fa; }
-
-        /* Not collected */
-        .not-collected {
-            background: #0d1a0d;
-            border: 1px solid #1a3a1a;
-            border-radius: 12px;
-            padding: 16px 20px;
-            margin-top: 16px;
-            font-size: 0.9rem;
-            color: #4ade80;
-        }
-        .not-collected strong { color: #86efac; }
-
-        /* Security badges */
-        .security-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 12px;
-            margin-top: 12px;
-        }
-        .security-item {
-            background: #1a1a1a;
-            border: 1px solid #252525;
-            border-radius: 12px;
-            padding: 16px;
-            text-align: center;
-        }
-        .security-item .icon { font-size: 28px; margin-bottom: 8px; }
-        .security-item .label { font-size: 0.85rem; color: #aaa; }
-        .security-item .value { font-size: 0.95rem; color: #e0e0e0; font-weight: 600; margin-top: 4px; }
-
-        /* Permission table */
-        .perm-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 12px;
-        }
-        .perm-table th {
-            text-align: left;
-            padding: 12px 16px;
-            background: #1a1a1a;
-            color: #aaa;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-bottom: 2px solid #252525;
-        }
-        .perm-table td {
-            padding: 12px 16px;
-            border-bottom: 1px solid #1a1a1a;
-            font-size: 0.9rem;
-            color: #b0b0b0;
-        }
-        .perm-table code {
-            background: #1a1a2e;
-            color: #e94560;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.85rem;
-        }
-
-        /* Contact */
-        .contact-box {
-            background: linear-gradient(135deg, #1a1a2e, #16213e);
-            border: 1px solid #0f3460;
-            border-radius: 16px;
-            padding: 32px;
-            text-align: center;
-            margin-top: 24px;
-        }
-        .contact-box h2 { color: #fff; margin-bottom: 16px; }
-        .contact-box a {
-            color: #e94560;
-            text-decoration: none;
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-        .contact-box a:hover { text-decoration: underline; }
-        .contact-box .dev { color: #718096; margin-top: 8px; font-size: 0.9rem; }
-
-        /* Footer */
-        .footer {
-            text-align: center;
-            padding: 32px 20px;
-            color: #444;
-            font-size: 0.8rem;
-            border-top: 1px solid #1a1a1a;
-        }
-
-        /* Mobile */
-        @media (max-width: 600px) {
-            .hero { padding: 60px 16px 40px; }
-            .hero h1 { font-size: 1.6rem; }
-            .hero .meta { flex-direction: column; gap: 8px; align-items: center; }
-            .section { padding: 24px 20px; }
-            .security-grid { grid-template-columns: 1fr; }
-            .perm-table th, .perm-table td { padding: 8px 10px; font-size: 0.82rem; }
-        }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="ARC FIN — Gizlilik Politikası / Privacy Policy. Google Play, KVKK ve GDPR uyumlu." />
+<meta name="robots" content="index, follow" />
+<title>ARC FIN — Gizlilik Politikası / Privacy Policy</title>
+<style>
+  :root {
+    --mavi: #1E6FFF;
+    --mavi-koyu: #0A1628;
+    --mavi-acik: #4D94FF;
+    --metin: #1A1F2E;
+    --metin-ikincil: #5C6B7F;
+    --bg: #FFFFFF;
+    --bg-yumusak: #F6F9FE;
+    --kenar: #E1E8F2;
+    --kart-gol: 0 1px 3px rgba(10, 22, 40, 0.06), 0 4px 12px rgba(10, 22, 40, 0.04);
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--metin);
+    background: var(--bg);
+    line-height: 1.65;
+    font-size: 16px;
+  }
+  .konteyner {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 32px 24px 80px;
+  }
+  header.ust {
+    background: linear-gradient(135deg, var(--mavi) 0%, var(--mavi-acik) 100%);
+    color: #fff;
+    padding: 48px 24px 40px;
+    text-align: center;
+  }
+  header.ust .marka {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin: 0 0 8px;
+  }
+  header.ust .alt {
+    opacity: 0.92;
+    font-size: 15px;
+    margin: 0;
+  }
+  .meta-kart {
+    background: var(--bg-yumusak);
+    border: 1px solid var(--kenar);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin: 24px 0 32px;
+    font-size: 14px;
+    color: var(--metin-ikincil);
+  }
+  .meta-kart strong { color: var(--metin); }
+  .meta-kart .satir { display: flex; flex-wrap: wrap; gap: 8px 24px; }
+  .meta-kart .satir > div { white-space: nowrap; }
+  .dil-secim {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin: 24px 0 8px;
+    flex-wrap: wrap;
+  }
+  .dil-secim a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    background: var(--bg-yumusak);
+    border: 1px solid var(--kenar);
+    text-decoration: none;
+    color: var(--metin);
+    font-weight: 600;
+    font-size: 14px;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .dil-secim a:hover, .dil-secim a:focus {
+    background: var(--mavi);
+    color: #fff;
+    border-color: var(--mavi);
+  }
+  h1 {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--metin);
+    margin: 48px 0 8px;
+    letter-spacing: -0.5px;
+    border-bottom: 3px solid var(--mavi);
+    padding-bottom: 12px;
+  }
+  h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--mavi-koyu);
+    margin: 32px 0 12px;
+    letter-spacing: -0.3px;
+  }
+  h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--metin);
+    margin: 20px 0 8px;
+  }
+  p { margin: 0 0 12px; }
+  ul, ol { margin: 8px 0 16px; padding-left: 24px; }
+  li { margin-bottom: 6px; }
+  a { color: var(--mavi); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  strong { color: var(--metin); font-weight: 700; }
+  code, .kod {
+    font-family: "SF Mono", Monaco, Consolas, "Courier New", monospace;
+    background: var(--bg-yumusak);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.92em;
+    color: var(--mavi-koyu);
+  }
+  .vurgu-kutusu {
+    background: linear-gradient(135deg, #EFF4FE 0%, #F6F9FE 100%);
+    border-left: 4px solid var(--mavi);
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin: 16px 0 20px;
+  }
+  .vurgu-kutusu p:last-child { margin-bottom: 0; }
+  .uyari-kutusu {
+    background: #FFF8E6;
+    border-left: 4px solid #F5A623;
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin: 16px 0 20px;
+    font-size: 14px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 20px;
+    font-size: 14px;
+    box-shadow: var(--kart-gol);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  table th, table td {
+    padding: 12px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--kenar);
+  }
+  table th {
+    background: var(--bg-yumusak);
+    color: var(--metin);
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+  table tr:last-child td { border-bottom: none; }
+  table tr:hover td { background: var(--bg-yumusak); }
+  .tablo-sarici { overflow-x: auto; }
+  .bolum-ayrac {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--kenar), transparent);
+    margin: 64px 0 48px;
+  }
+  .alt-bilgi {
+    text-align: center;
+    color: var(--metin-ikincil);
+    font-size: 13px;
+    padding: 32px 0 16px;
+    margin-top: 48px;
+    border-top: 1px solid var(--kenar);
+  }
+  .iletisim-kart {
+    background: var(--mavi-koyu);
+    color: #fff;
+    padding: 24px 20px;
+    border-radius: 12px;
+    margin: 24px 0;
+    text-align: center;
+  }
+  .iletisim-kart h3 { color: #fff; margin-top: 0; }
+  .iletisim-kart a { color: var(--mavi-acik); font-weight: 600; }
+  .yok-listesi li::marker { content: "✕  "; color: #D14343; }
+  .var-listesi li::marker { content: "✓  "; color: #1E9D5F; }
+  @media (max-width: 600px) {
+    .konteyner { padding: 24px 16px 60px; }
+    header.ust { padding: 36px 16px 32px; }
+    header.ust .marka { font-size: 24px; }
+    h1 { font-size: 22px; }
+    h2 { font-size: 18px; }
+    table th, table td { padding: 10px 8px; font-size: 13px; }
+  }
+  /* Yazdırma uyumu */
+  @media print {
+    header.ust { background: #fff; color: #000; border-bottom: 2px solid #000; }
+    .dil-secim, .vurgu-kutusu, .iletisim-kart { background: #fff; color: #000; border: 1px solid #000; }
+    a { color: #000; text-decoration: underline; }
+  }
+</style>
 </head>
 <body>
 
-<!-- HERO -->
-<div class="hero">
-    <div class="hero-icon">📒</div>
-    <h1>ARC FIN</h1>
-    <p class="subtitle">Gizlilik Politikası / Privacy Policy</p>
-    <div class="meta">
-        <span>📅 26 Mayıs 2026</span>
-        <span>👤 ARC</span>
-        <span>📧 arcelektronik01@gmail.com</span>
+<header class="ust">
+  <p class="marka">ARC FIN</p>
+  <p class="alt">Gizlilik Politikası · Privacy Policy</p>
+</header>
+
+<main class="konteyner">
+
+  <div class="meta-kart">
+    <div class="satir">
+      <div><strong>Sürüm / Version:</strong> 2.0</div>
+      <div><strong>Yürürlük / Effective:</strong> 2026-06-03</div>
+      <div><strong>Paket / Package:</strong> <code>com.arcdigitalasistan</code></div>
     </div>
-</div>
+  </div>
 
-<!-- LANGUAGE TOGGLE -->
-<div class="lang-toggle">
-    <button class="lang-btn active" onclick="switchLang('tr')">🇹🇷 Türkçe</button>
-    <button class="lang-btn" onclick="switchLang('en')">🇬🇧 English</button>
-</div>
+  <div class="dil-secim">
+    <a href="#tr">🇹🇷 Türkçe</a>
+    <a href="#en">🇬🇧 English</a>
+  </div>
 
-<div class="content">
+  <!-- ════════════════════════════════ TÜRKÇE ════════════════════════════════ -->
+  <section id="tr">
+    <h1>🇹🇷 Türkçe</h1>
 
-<!-- ===================== TÜRKÇE ===================== -->
-<div id="lang-tr" class="lang-section active">
+    <h2>1. Giriş</h2>
+    <p>ARC FIN ("Uygulama"), küçük işletmelere ve esnafa yönelik bir <strong>dijital kayıt defteri</strong> uygulamasıdır. Bu gizlilik politikası;</p>
+    <ul>
+      <li>hangi verileri topladığımızı,</li>
+      <li>nasıl sakladığımızı ve koruduğumuzu,</li>
+      <li>üçüncü taraflarla paylaşıp paylaşmadığımızı,</li>
+      <li>kullanıcıların <strong>KVKK (6698 sayılı Kanun)</strong> ve <strong>AB GDPR (2016/679)</strong> kapsamındaki haklarını,</li>
+    </ul>
+    <p>açıklar.</p>
+    <p>Politika, <strong>Google Play Geliştirici Program Politikaları</strong>, <strong>Google API Services User Data Policy (Limited Use)</strong>, <strong>KVKK</strong>, <strong>GDPR</strong> ve diğer geçerli veri koruma mevzuatına uygun olarak hazırlanmıştır.</p>
 
-    <div class="section">
-        <div class="section-number">1</div>
-        <h2>Giriş</h2>
-        <p>ARC FIN ("Uygulama"), küçük işletmelere ve esnafa yönelik bir dijital kayıt defteri uygulamasıdır. Bu gizlilik politikası, uygulamanın hangi verileri topladığını, nasıl sakladığını, nasıl koruduğunu ve kullanıcıların haklarını açıklar.</p>
-        <p>Google Play geliştirici politikalarına ve geçerli veri koruma mevzuatına uygun olarak hazırlanmıştır.</p>
-    </div>
+    <h2>2. Veri Sorumlusu (Data Controller)</h2>
+    <p>ARC FIN bireysel geliştirici tarafından yayınlanan bir uygulamadır.</p>
+    <ul>
+      <li><strong>Geliştirici / Developer:</strong> Ferdi Buldık</li>
+      <li><strong>Konum:</strong> Türkiye</li>
+      <li><strong>İletişim:</strong> <a href="mailto:arcelektronik01@gmail.com">arcelektronik01@gmail.com</a></li>
+    </ul>
+    <p>KVKK m.13/2 uyarınca başvurular <strong>en geç 30 gün</strong> içinde yanıtlanır.</p>
 
-    <div class="section">
-        <div class="section-number">2</div>
-        <h2>Toplanan Veriler ve Amaçları</h2>
-        <div class="data-grid">
-            <div class="data-card">
-                <span class="data-name">💰 Finansal Veriler</span>
-                <span class="badge badge-required">Zorunlu</span>
-                <span class="badge badge-noshare">Paylaşılmaz</span>
-                <span class="data-desc">Gelir, gider, borç, alacak kayıtları — Uygulamanın temel işlevi</span>
-            </div>
-            <div class="data-card">
-                <span class="data-name">👥 Rehber Kişileri</span>
-                <span class="badge badge-optional">İsteğe Bağlı</span>
-                <span class="badge badge-noshare">Paylaşılmaz</span>
-                <span class="data-desc">Ad, telefon numarası — Müşteri eklemeyi kolaylaştırmak. READ_CONTACTS izni reddedilebilir.</span>
-            </div>
-            <div class="data-card">
-                <span class="data-name">📷 Kamera</span>
-                <span class="badge badge-optional">İsteğe Bağlı</span>
-                <span class="badge badge-noshare">Paylaşılmaz</span>
-                <span class="data-desc">Fiş/fatura fotoğrafları — CAMERA izni reddedilebilir.</span>
-            </div>
-            <div class="data-card">
-                <span class="data-name">🔑 Google Hesabı</span>
-                <span class="badge badge-optional">İsteğe Bağlı</span>
-                <span class="badge badge-noshare">Paylaşılmaz</span>
-                <span class="data-desc">E-posta adresi — Google Drive yedekleme için kimlik doğrulama.</span>
-            </div>
-            <div class="data-card">
-                <span class="data-name">⚙️ Uygulama Tercihleri</span>
-                <span class="badge badge-required">Otomatik</span>
-                <span class="badge badge-noshare">Paylaşılmaz</span>
-                <span class="data-desc">Dil, para birimi, tema, kilit ayarı — Kullanıcı deneyimini kişiselleştirme.</span>
-            </div>
-        </div>
-        <div class="not-collected">
-            <strong>❌ Toplamadığımız veriler:</strong> Konum bilgisi, reklam tanımlayıcıları, kullanım analitiği, arama/tarama geçmişi, ses/video kayıtları, sağlık/biyometrik veriler. Uygulama herhangi bir analitik SDK, reklam SDK veya üçüncü taraf izleme aracı içermez.
-        </div>
+    <h2>3. Toplanan Veriler ve İşleme Amaçları</h2>
+    <div class="tablo-sarici">
+      <table>
+        <thead>
+          <tr>
+            <th>Veri</th>
+            <th>Amaç</th>
+            <th>Hukuki Sebep</th>
+            <th>Paylaşım</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Finansal kayıtlar (gelir/gider/borç/alacak)</td><td>Uygulamanın temel işlevi</td><td>Sözleşmenin ifası (GDPR 6/1-b)</td><td>Hayır — sadece cihazda</td></tr>
+          <tr><td>Rehber kişileri (ad, telefon)</td><td>Müşteri eklemeyi kolaylaştırma</td><td>Açık rıza</td><td>Hayır</td></tr>
+          <tr><td>Kamera (fiş/fatura fotoğrafı)</td><td>Belgeyi işleme iliştirme</td><td>Açık rıza</td><td>Hayır</td></tr>
+          <tr><td>Google hesabı e-postası</td><td>Drive yedekleme kimlik doğrulaması</td><td>Açık rıza</td><td>Sadece kendi Drive'ınız</td></tr>
+          <tr><td>Cihaz tercihleri (dil, tema, kilit)</td><td>Kişiselleştirme</td><td>Meşru menfaat</td><td>Hayır</td></tr>
+          <tr><td>Crash logları</td><td>Stabilite iyileştirme</td><td>Meşru menfaat</td><td>Google Play (opt-out)</td></tr>
+        </tbody>
+      </table>
     </div>
 
-    <div class="section">
-        <div class="section-number">3</div>
-        <h2>Verilerin Saklanması ve Güvenliği</h2>
-        <div class="security-grid">
-            <div class="security-item">
-                <div class="icon">🔒</div>
-                <div class="label">Veritabanı</div>
-                <div class="value">SQLCipher AES-256</div>
-            </div>
-            <div class="security-item">
-                <div class="icon">🔐</div>
-                <div class="label">Anahtar Saklama</div>
-                <div class="value">Android KeyStore</div>
-            </div>
-            <div class="security-item">
-                <div class="icon">☁️</div>
-                <div class="label">Yedek Şifreleme</div>
-                <div class="value">AES-256-GCM</div>
-            </div>
-            <div class="security-item">
-                <div class="icon">📱</div>
-                <div class="label">Tercihler</div>
-                <div class="value">EncryptedSharedPrefs</div>
-            </div>
-        </div>
-        <p style="margin-top:16px">Tüm finansal kayıtlar yalnızca kullanıcının cihazında saklanır. Bulut yedekleme isteğe bağlıdır ve yalnızca kullanıcının kendi Google Drive hesabının uygulama özel alanına (drive.appdata) yüklenir. Bu alana yalnızca ARC FIN erişebilir.</p>
-        <p>Uygulama veritabanı Android otomatik yedeklemesinden hariç tutulmuştur. Yalnızca genel tercihler otomatik yedeklemeye dahildir.</p>
+    <h3>Topladığımız HİÇBİR şey yok:</h3>
+    <ul class="yok-listesi">
+      <li>Konum bilgisi (GPS / IP / hücre)</li>
+      <li>Reklam tanımlayıcıları (AAID, IDFA)</li>
+      <li>Kullanım analitiği (Firebase Analytics, Mixpanel, Amplitude vb. yok)</li>
+      <li>Arama / tarama geçmişi</li>
+      <li>Ses, video veya görüntü kaydı (kamera izni dışında)</li>
+      <li>Sağlık / biyometrik veriler (parmak izi cihazda kalır)</li>
+      <li>Mesajlaşma içeriği (SMS / WhatsApp sistem üzerinden gider, içerik bizde saklanmaz)</li>
+      <li>Üçüncü taraf reklam veya izleme SDK'sı</li>
+    </ul>
+
+    <h2>4. Verilerin Saklanması ve Güvenliği</h2>
+    <div class="tablo-sarici">
+      <table>
+        <thead><tr><th>Bileşen</th><th>Yöntem</th><th>Standart</th></tr></thead>
+        <tbody>
+          <tr><td>Veritabanı şifrelemesi</td><td>SQLCipher</td><td>AES-256</td></tr>
+          <tr><td>Anahtar saklama</td><td>Android KeyStore (donanım destekli)</td><td>TEE / StrongBox</td></tr>
+          <tr><td>Yedek dosyası şifrelemesi</td><td>AES-256-GCM</td><td>NIST SP 800-38D</td></tr>
+          <tr><td>Uygulama tercihleri</td><td>EncryptedSharedPreferences</td><td>AES-256-SIV + AES-256-GCM</td></tr>
+          <tr><td>Drive bağlantısı</td><td>OAuth 2.0 + drive.appdata</td><td>RFC 6749</td></tr>
+          <tr><td>HTTPS</td><td>OkHttp + TLS 1.3</td><td>RFC 8446</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <ul>
+      <li>Tüm finansal kayıtlar <strong>yalnızca cihazda</strong> şifreli olarak saklanır.</li>
+      <li>Bulut yedekleme <strong>isteğe bağlıdır</strong> ve yalnızca kullanıcının kendi Google Drive hesabının uygulama-özel klasörüne (<code>drive.appdata</code>) yüklenir. Bu klasör kullanıcıya bile görünmez — yalnızca ARC FIN erişebilir.</li>
+      <li>Uygulama veritabanı, Android otomatik yedeklemesinden <strong>hariç tutulmuştur</strong>.</li>
+      <li><strong>Sunucumuz yok</strong> — uygulama tamamen çevrimdışı çalışır.</li>
+    </ul>
+
+    <h2>5. Üçüncü Taraflarla Paylaşım</h2>
+    <p>Reklam ağı, analitik sağlayıcı, crash raporlama SDK'sı veya veri komisyoncusu kullanmıyoruz. <strong>Veri satılmaz, kiralanmaz, paylaşılmaz.</strong></p>
+
+    <div class="vurgu-kutusu">
+      <h3 style="margin-top:0;">Google API Services User Data Policy — Limited Use Beyanı</h3>
+      <p><strong>ARC FIN'in Google API'lerinden alınan bilgileri kullanması ve başka uygulamalara aktarması, <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener">Google API Services User Data Policy</a> hükümlerine, <em>Limited Use</em> gereksinimleri dahil olmak üzere, tamamen uyar.</strong></p>
+      <p>Özet:</p>
+      <ul>
+        <li>Drive verilerinizi yalnızca <strong>yedekleme</strong> özelliği için kullanırız.</li>
+        <li>Reklam göstermek, kullanıcı profili çıkarmak, üçüncü taraflara satmak/aktarmak için <strong>kullanmayız</strong>.</li>
+        <li>İnsan denetimi yapılmaz; otomatik işleme yalnızca yedek yükleme/indirme/listeleme/silmedir.</li>
+        <li>Drive token'ı cihazınızdan çıkmaz, geliştirici sunucularına gönderilmez.</li>
+      </ul>
     </div>
 
-    <div class="section">
-        <div class="section-number">4</div>
-        <h2>Üçüncü Taraflarla Paylaşım</h2>
-        <ul>
-            <li>Kullanıcı verileri <strong>hiçbir üçüncü tarafla paylaşılmaz</strong>, satılmaz, kiralanmaz veya aktarılmaz.</li>
-            <li>Uygulama <strong>reklam içermez</strong>, reklam ağlarına veri göndermez.</li>
-            <li>Uygulama <strong>analitik veya izleme SDK'sı içermez.</strong></li>
-            <li>Google Drive yedeklemesi yalnızca kullanıcının kendi hesabına yazılır; geliştirici bu verilere erişemez.</li>
-        </ul>
+    <h2>6. Veri Saklama ve Silme</h2>
+    <div class="tablo-sarici">
+      <table>
+        <thead><tr><th>Yol</th><th>Sonuç</th><th>Süre</th></tr></thead>
+        <tbody>
+          <tr><td>Uygulama içi → <strong>Ayarlar &gt; Tüm Verilerimi Sil</strong></td><td>DB + tercihler + Google hesap bağlantısı + bekleyen iş planları</td><td>Anında</td></tr>
+          <tr><td>Uygulamayı kaldırma</td><td>Tüm yerel veriler silinir</td><td>Anında</td></tr>
+          <tr><td>Google Drive yedekleri</td><td>Drive ayarlarından veya uygulamanın "Yedeği Sil" özelliği</td><td>~dakikalar</td></tr>
+          <tr><td>E-posta ile talep</td><td>arcelektronik01@gmail.com</td><td><strong>7 iş günü</strong> yanıt, 30 gün yerine getirme</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><strong>Geliştirici sunucusunda hiçbir kullanıcı verisi tutulmaz</strong> — uygulama tamamen çevrimdışıdır.</p>
+
+    <h2>7. Kullanıcı Hakları (KVKK m.11 + GDPR md. 15–22)</h2>
+    <ol>
+      <li><strong>Bilgi alma hakkı</strong> — hangi verilerinizin işlendiğini öğrenme</li>
+      <li><strong>Erişim hakkı</strong> — verilerinizin bir kopyasını isteme</li>
+      <li><strong>Düzeltme hakkı</strong> — yanlış verinin düzeltilmesini isteme</li>
+      <li><strong>Silme hakkı</strong> ("unutulma hakkı") — verilerin silinmesini isteme</li>
+      <li><strong>İşlemeyi kısıtlama hakkı</strong> — belirli işlemeyi durdurma</li>
+      <li><strong>Veri taşınabilirliği</strong> — uygulama içi "Yedek Al" ile JSON çıktı</li>
+      <li><strong>İtiraz hakkı</strong> — meşru menfaate dayalı işlemeye itiraz</li>
+      <li><strong>Otomatik karar vermeden muaf olma</strong> — otomatik profilleme yapmıyoruz</li>
+      <li><strong>Şikâyet hakkı</strong> — TR: <a href="https://www.kvkk.gov.tr" target="_blank" rel="noopener">KVKK Kurumu</a>; AB: ikamet ettiğiniz üye devletin denetim otoritesi</li>
+    </ol>
+    <p><strong>Başvuru kanalı:</strong> <a href="mailto:arcelektronik01@gmail.com">arcelektronik01@gmail.com</a> · <strong>Yanıt:</strong> en geç 30 gün · <strong>Ücret:</strong> KVKK tarifesi dışında ücretsiz.</p>
+
+    <h2>8. İzinler</h2>
+    <div class="tablo-sarici">
+      <table>
+        <thead><tr><th>İzin</th><th>Amaç</th><th>Zorunlu mu?</th></tr></thead>
+        <tbody>
+          <tr><td><code>READ_CONTACTS</code></td><td>Rehberden müşteri seçimi</td><td>İsteğe bağlı</td></tr>
+          <tr><td><code>CAMERA</code></td><td>Fiş / fatura fotoğrafı</td><td>İsteğe bağlı</td></tr>
+          <tr><td><code>INTERNET</code></td><td>Google Drive yedekleme</td><td>Yalnız yedekleme kullanılırsa</td></tr>
+          <tr><td><code>POST_NOTIFICATIONS</code></td><td>Hatırlatma bildirimleri</td><td>İsteğe bağlı (Android 13+)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Tüm izinler çalışma zamanında istenir. Reddedildiğinde uygulama ilgili özellik <strong>olmadan</strong> çalışmaya devam eder.</p>
+
+    <h2>9. Çocukların Gizliliği</h2>
+    <p>Bu uygulama <strong>13 yaş altı çocuklara yönelik değildir</strong>. 13 yaş altı kullanıcıdan bilerek veri toplamayız. Çocuk verisi tespit edersek <strong>derhal sileriz</strong>.</p>
+
+    <h2>10. Uluslararası Veri Transferi</h2>
+    <ul>
+      <li>Tüm finansal veri <strong>cihazda</strong> kalır — sınır ötesi transfer yoktur.</li>
+      <li><strong>Google Drive yedeği</strong> kullanıldığında Google'ın küresel altyapısına gider; Google'ın Standart Sözleşmesel Maddeler (SCC) garantileri geçerlidir. Uygulamanın bu transfer üzerinde kontrolü yoktur; Google'ın kendi gizlilik politikası geçerlidir.</li>
+    </ul>
+
+    <h2>11. Veri İhlali Bildirimi</h2>
+    <ul>
+      <li>İhlal tespitinde inceleme <strong>24 saat</strong> içinde başlatılır.</li>
+      <li><strong>72 saat</strong> içinde KVKK Kurumu / yetkili AB denetim otoritesine bildirim yapılır (GDPR md. 33).</li>
+      <li>Etkilenen kullanıcılara <strong>uygulama içi bildirim + e-posta</strong> ile makul süre içinde haber verilir (GDPR md. 34).</li>
+    </ul>
+
+    <h2>12. Politika Değişiklikleri</h2>
+    <p>Politika güncellendiğinde sürüm numarası ve tarih bu sayfada güncellenir. <strong>Önemli değişikliklerde</strong> uygulama içi bildirim ile haber verilir. Geriye dönük olarak kötüleştirici değişiklik yapılmaz.</p>
+
+  </section>
+
+  <hr class="bolum-ayrac" />
+
+  <!-- ════════════════════════════════ ENGLISH ════════════════════════════════ -->
+  <section id="en">
+    <h1>🇬🇧 English</h1>
+
+    <h2>1. Introduction</h2>
+    <p>ARC FIN ("App") is a <strong>digital ledger application</strong> for small businesses and tradespeople. This privacy policy explains what data the App collects, how it is stored and protected, whether it is shared, and your rights under the <strong>EU GDPR (2016/679)</strong>, <strong>Turkish KVKK (Law 6698)</strong>, <strong>COPPA</strong>, and other applicable data-protection regulations.</p>
+    <p>This policy is prepared in compliance with <strong>Google Play Developer Program Policies</strong>, <strong>Google API Services User Data Policy (Limited Use)</strong>, <strong>GDPR</strong>, and <strong>KVKK</strong>.</p>
+
+    <h2>2. Data Controller</h2>
+    <p>ARC FIN is published by an independent solo developer.</p>
+    <ul>
+      <li><strong>Developer:</strong> Ferdi Buldık</li>
+      <li><strong>Location:</strong> Türkiye / Turkey</li>
+      <li><strong>Contact:</strong> <a href="mailto:arcelektronik01@gmail.com">arcelektronik01@gmail.com</a></li>
+    </ul>
+    <p>Requests are answered within <strong>30 days</strong> at the latest (GDPR Art. 12).</p>
+
+    <h2>3. Data Collected and Purposes</h2>
+    <div class="tablo-sarici">
+      <table>
+        <thead><tr><th>Data</th><th>Purpose</th><th>Legal basis</th><th>Shared?</th></tr></thead>
+        <tbody>
+          <tr><td>Financial records (income/expense/debt/receivable)</td><td>Core app function</td><td>Contract performance (GDPR 6/1-b)</td><td>No — on-device only</td></tr>
+          <tr><td>Contacts (name, phone)</td><td>Faster customer entry</td><td>Consent</td><td>No</td></tr>
+          <tr><td>Camera (receipt/invoice photo)</td><td>Attach document image</td><td>Consent</td><td>No</td></tr>
+          <tr><td>Google account email</td><td>Drive backup authentication</td><td>Consent</td><td>Only your own Drive</td></tr>
+          <tr><td>Device preferences (language, theme, lock)</td><td>Personalization</td><td>Legitimate interest</td><td>No</td></tr>
+          <tr><td>Crash logs</td><td>Stability improvement</td><td>Legitimate interest</td><td>Google Play (opt-out)</td></tr>
+        </tbody>
+      </table>
     </div>
 
-    <div class="section">
-        <div class="section-number">5</div>
-        <h2>Veri Silme ve Kullanıcı Hakları</h2>
-        <ul>
-            <li><strong>Uygulama içi silme:</strong> Ayarlar → "Tüm Verilerimi Sil" butonuna basarak tüm verileri kalıcı olarak silebilirsiniz. Bu işlem veritabanını, tercihleri, Google hesap bağlantısını ve arka plan işlerini temizler.</li>
-            <li><strong>Uygulamayı kaldırma:</strong> Cihazınızdan kaldırdığınızda tüm yerel veriler otomatik olarak silinir.</li>
-            <li><strong>Google Drive yedekleri:</strong> Google Drive ayarlarından uygulama verilerini manuel olarak silebilirsiniz.</li>
-            <li><strong>İletişim yoluyla talep:</strong> arcelektronik01@gmail.com adresine e-posta göndererek veri silme talebinde bulunabilirsiniz. Talepler 7 iş günü içinde yanıtlanır.</li>
-        </ul>
+    <h3>We do NOT collect:</h3>
+    <ul class="yok-listesi">
+      <li>Location (GPS / IP / cell)</li>
+      <li>Advertising identifiers (AAID, IDFA)</li>
+      <li>Usage analytics (no Firebase Analytics, Mixpanel, Amplitude, etc.)</li>
+      <li>Browsing / search history</li>
+      <li>Audio / video / images (other than the camera permission you grant)</li>
+      <li>Health or biometric data</li>
+      <li>Message content (WhatsApp/SMS dispatches go through the OS)</li>
+      <li>Third-party advertising or tracking SDKs</li>
+    </ul>
+
+    <h2>4. Data Storage and Security</h2>
+    <div class="tablo-sarici">
+      <table>
+        <thead><tr><th>Component</th><th>Method</th><th>Standard</th></tr></thead>
+        <tbody>
+          <tr><td>Database encryption</td><td>SQLCipher</td><td>AES-256</td></tr>
+          <tr><td>Key storage</td><td>Android KeyStore (hardware-backed)</td><td>TEE / StrongBox</td></tr>
+          <tr><td>Backup file encryption</td><td>AES-256-GCM</td><td>NIST SP 800-38D</td></tr>
+          <tr><td>App preferences</td><td>EncryptedSharedPreferences</td><td>AES-256-SIV + AES-256-GCM</td></tr>
+          <tr><td>Drive connection</td><td>OAuth 2.0 + drive.appdata</td><td>RFC 6749</td></tr>
+          <tr><td>HTTPS</td><td>OkHttp + TLS 1.3</td><td>RFC 8446</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <ul>
+      <li>All financial records are stored <strong>only on your device</strong>, encrypted.</li>
+      <li>Cloud backup is <strong>optional</strong> and uploaded only to your own Google Drive app-specific folder (<code>drive.appdata</code>), which is hidden from the user and accessible only by ARC FIN.</li>
+      <li>The app database is <strong>excluded from Android Auto Backup</strong>.</li>
+      <li><strong>We operate no servers</strong> — the app runs fully offline.</li>
+    </ul>
+
+    <h2>5. Third-Party Sharing</h2>
+    <p>No ad networks, no analytics providers, no crash-reporting SDKs, no data brokers. <strong>We do not sell, rent, or share data.</strong></p>
+
+    <div class="vurgu-kutusu">
+      <h3 style="margin-top:0;">Google API Services User Data Policy — Limited Use Disclosure</h3>
+      <p><strong>ARC FIN's use and transfer to any other app of information received from Google APIs will adhere to <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener">Google API Services User Data Policy</a>, including the Limited Use requirements.</strong></p>
+      <p>Summary:</p>
+      <ul>
+        <li>We use Drive data only for the <strong>backup</strong> feature.</li>
+        <li>We do <strong>not</strong> use it for advertising, profiling, sale, or transfer to third parties.</li>
+        <li>No human reads your data; automated processing is limited to backup upload/download/list/delete.</li>
+        <li>Drive tokens stay on your device; they are not sent to developer servers.</li>
+      </ul>
     </div>
 
-    <div class="section">
-        <div class="section-number">6</div>
-        <h2>Veri Saklama Süresi</h2>
-        <p>Veriler kullanıcı silene veya uygulamayı kaldırana kadar cihazda saklanır. Geliştirici sunucularında kullanıcı verisi tutulmaz — uygulama tamamen çevrimdışı çalışır. Google Drive yedekleri kullanıcının kendi hesabında kalır ve kullanıcı tarafından silinebilir.</p>
+    <h2>6. Data Retention and Deletion</h2>
+    <div class="tablo-sarici">
+      <table>
+        <thead><tr><th>Path</th><th>Outcome</th><th>Timeline</th></tr></thead>
+        <tbody>
+          <tr><td>In-app → <strong>Settings &gt; Delete All My Data</strong></td><td>DB + preferences + Google link + pending jobs cleared</td><td>Immediate</td></tr>
+          <tr><td>Uninstalling the app</td><td>All local data deleted</td><td>Immediate</td></tr>
+          <tr><td>Google Drive backups</td><td>Delete from Drive settings or via app's "Delete Backup"</td><td>~minutes</td></tr>
+          <tr><td>Email request</td><td>arcelektronik01@gmail.com</td><td><strong>7 business days</strong> response, fulfilment within 30 days</td></tr>
+        </tbody>
+      </table>
     </div>
+    <p><strong>No user data is stored on our servers</strong> — the app is fully offline.</p>
 
-    <div class="section">
-        <div class="section-number">7</div>
-        <h2>Çocukların Gizliliği</h2>
-        <p>Bu uygulama çocuklara yönelik değildir. 13 yaşın altındaki kişilerden bilerek kişisel veri toplamayız. Bir çocuğun veri sağladığını öğrenirsek, bu verileri derhal sileriz.</p>
+    <h2>7. Your Rights (GDPR Art. 15–22 + KVKK Art. 11)</h2>
+    <ol>
+      <li><strong>Be informed</strong> about processing</li>
+      <li><strong>Access</strong> a copy of your data</li>
+      <li><strong>Rectification</strong> of incorrect data</li>
+      <li><strong>Erasure</strong> ("right to be forgotten")</li>
+      <li><strong>Restrict processing</strong></li>
+      <li><strong>Data portability</strong> — get a JSON export ("Backup" feature)</li>
+      <li><strong>Object</strong> to processing based on legitimate interest</li>
+      <li><strong>Not be subject to automated decision-making</strong> — we do no profiling</li>
+      <li><strong>Lodge a complaint</strong> — EU: your supervisory authority; TR: <a href="https://www.kvkk.gov.tr" target="_blank" rel="noopener">KVKK Authority</a></li>
+    </ol>
+    <p><strong>Channel:</strong> <a href="mailto:arcelektronik01@gmail.com">arcelektronik01@gmail.com</a> · <strong>Response:</strong> within 30 days · <strong>Cost:</strong> Free (except where KVKK tariff applies).</p>
+
+    <h2>8. Permissions</h2>
+    <div class="tablo-sarici">
+      <table>
+        <thead><tr><th>Permission</th><th>Purpose</th><th>Required?</th></tr></thead>
+        <tbody>
+          <tr><td><code>READ_CONTACTS</code></td><td>Pick customer info from contacts</td><td>Optional</td></tr>
+          <tr><td><code>CAMERA</code></td><td>Receipt / invoice photos</td><td>Optional</td></tr>
+          <tr><td><code>INTERNET</code></td><td>Google Drive backup</td><td>Not needed if backup is not used</td></tr>
+          <tr><td><code>POST_NOTIFICATIONS</code></td><td>Reminder notifications</td><td>Optional (Android 13+)</td></tr>
+        </tbody>
+      </table>
     </div>
+    <p>All permissions are requested at runtime. If denied, the app continues to work <strong>without</strong> the related feature.</p>
 
-    <div class="section">
-        <div class="section-number">8</div>
-        <h2>İzinler</h2>
-        <table class="perm-table">
-            <thead><tr><th>İzin</th><th>Amaç</th><th>Gerekli mi?</th></tr></thead>
-            <tbody>
-                <tr><td><code>READ_CONTACTS</code></td><td>Rehberden müşteri bilgisi seçimi</td><td>İsteğe bağlı</td></tr>
-                <tr><td><code>CAMERA</code></td><td>Fiş/fatura fotoğrafı çekimi</td><td>İsteğe bağlı</td></tr>
-                <tr><td><code>INTERNET</code></td><td>Google Drive yedekleme</td><td>Yedekleme kullanılmazsa gerekmez</td></tr>
-                <tr><td><code>POST_NOTIFICATIONS</code></td><td>Hatırlatma ve yedekleme bildirimleri</td><td>İsteğe bağlı (Android 13+)</td></tr>
-            </tbody>
-        </table>
-        <p style="margin-top:12px">Tüm izinler çalışma zamanında istenir. Reddedildiğinde uygulama ilgili özellik olmadan çalışmaya devam eder.</p>
-    </div>
+    <h2>9. Children's Privacy</h2>
+    <p>This app is <strong>not directed at children under 13</strong> (COPPA / GDPR-K compliance). We do not knowingly collect data from minors. If detected, such data is <strong>deleted immediately</strong>.</p>
 
-    <div class="section">
-        <div class="section-number">9</div>
-        <h2>Politika Değişiklikleri</h2>
-        <p>Bu gizlilik politikası güncellendiğinde yeni tarih bu sayfada yayınlanır. Önemli değişikliklerde kullanıcılar uygulama içi bildirim ile bilgilendirilir.</p>
-    </div>
+    <h2>10. International Data Transfers</h2>
+    <ul>
+      <li>All financial data stays <strong>on the user's device</strong> — no cross-border transfer.</li>
+      <li><strong>Google Drive backup</strong> flows through Google's global infrastructure under Google's own Standard Contractual Clauses (SCCs). The app has no control over this transfer; Google's privacy policy governs it.</li>
+    </ul>
 
-    <div class="contact-box">
-        <h2>📧 İletişim</h2>
-        <p style="color:#a0aec0; margin-bottom:12px">Gizlilik ile ilgili sorularınız için:</p>
-        <a href="mailto:arcelektronik01@gmail.com">arcelektronik01@gmail.com</a>
-        <p class="dev">Geliştirici: ARC</p>
-    </div>
-</div>
+    <h2>11. Data Breach Notification</h2>
+    <ul>
+      <li>Internal investigation begins within <strong>24 hours</strong>.</li>
+      <li>Notification to KVKK / EU supervisory authority within <strong>72 hours</strong> (GDPR Art. 33).</li>
+      <li>Affected users notified via <strong>in-app notification + email</strong> within a reasonable time (GDPR Art. 34).</li>
+    </ul>
 
-<!-- ===================== ENGLISH ===================== -->
-<div id="lang-en" class="lang-section">
+    <h2>12. Policy Changes</h2>
+    <p>When this policy is updated, version number and date on this page are updated. <strong>Material changes</strong> are announced via in-app notification. We do not apply retroactive worsening changes.</p>
 
-    <div class="section">
-        <div class="section-number">1</div>
-        <h2>Introduction</h2>
-        <p>ARC FIN ("App") is a digital ledger application designed for small businesses and tradespeople. This privacy policy describes what data the App collects, how it is stored, how it is protected, and what rights users have.</p>
-        <p>It has been prepared in accordance with Google Play Developer Program Policies and applicable data-protection regulations.</p>
-    </div>
+  </section>
 
-    <div class="section">
-        <div class="section-number">2</div>
-        <h2>Data Collected and Purposes</h2>
-        <div class="data-grid">
-            <div class="data-card">
-                <span class="data-name">💰 Financial Data</span>
-                <span class="badge badge-required">Required</span>
-                <span class="badge badge-noshare">Not Shared</span>
-                <span class="data-desc">Income, expense, debt, receivable records — Core app function</span>
-            </div>
-            <div class="data-card">
-                <span class="data-name">👥 Contacts</span>
-                <span class="badge badge-optional">Optional</span>
-                <span class="badge badge-noshare">Not Shared</span>
-                <span class="data-desc">Name, phone number — Easier customer entry. READ_CONTACTS permission can be denied.</span>
-            </div>
-            <div class="data-card">
-                <span class="data-name">📷 Camera</span>
-                <span class="badge badge-optional">Optional</span>
-                <span class="badge badge-noshare">Not Shared</span>
-                <span class="data-desc">Receipt/invoice photos — CAMERA permission can be denied.</span>
-            </div>
-            <div class="data-card">
-                <span class="data-name">🔑 Google Account</span>
-                <span class="badge badge-optional">Optional</span>
-                <span class="badge badge-noshare">Not Shared</span>
-                <span class="data-desc">Email address — Authentication for Google Drive backup.</span>
-            </div>
-            <div class="data-card">
-                <span class="data-name">⚙️ App Preferences</span>
-                <span class="badge badge-required">Automatic</span>
-                <span class="badge badge-noshare">Not Shared</span>
-                <span class="data-desc">Language, currency, theme, lock setting — Personalizing user experience.</span>
-            </div>
-        </div>
-        <div class="not-collected">
-            <strong>❌ Data we do NOT collect:</strong> Location data, advertising identifiers, usage analytics, search/browsing history, audio/video recordings, health/biometric data. The app does not contain any analytics SDK, advertising SDK, or third-party tracking tool.
-        </div>
-    </div>
+  <div class="iletisim-kart">
+    <h3>İletişim · Contact</h3>
+    <p style="margin-bottom: 8px;">Gizlilik, KVKK, GDPR ve veri silme talepleri için:</p>
+    <p style="font-size: 18px; margin: 0;"><a href="mailto:arcelektronik01@gmail.com">arcelektronik01@gmail.com</a></p>
+  </div>
 
-    <div class="section">
-        <div class="section-number">3</div>
-        <h2>Data Storage and Security</h2>
-        <div class="security-grid">
-            <div class="security-item">
-                <div class="icon">🔒</div>
-                <div class="label">Database</div>
-                <div class="value">SQLCipher AES-256</div>
-            </div>
-            <div class="security-item">
-                <div class="icon">🔐</div>
-                <div class="label">Key Storage</div>
-                <div class="value">Android KeyStore</div>
-            </div>
-            <div class="security-item">
-                <div class="icon">☁️</div>
-                <div class="label">Backup Encryption</div>
-                <div class="value">AES-256-GCM</div>
-            </div>
-            <div class="security-item">
-                <div class="icon">📱</div>
-                <div class="label">Preferences</div>
-                <div class="value">EncryptedSharedPrefs</div>
-            </div>
-        </div>
-        <p style="margin-top:16px">All financial records are stored only on the user's device. Cloud backup is optional and uploads only to the user's own Google Drive app-specific folder (drive.appdata). Only ARC FIN can access this folder.</p>
-        <p>The app database is excluded from Android automatic backup. Only general preferences are included in auto backup.</p>
-    </div>
+  <footer class="alt-bilgi">
+    <p>© 2026 ARC FIN · Tüm hakları saklıdır · All rights reserved</p>
+    <p style="margin-top: 4px;">Sürüm 2.0 · 2026-06-03</p>
+  </footer>
 
-    <div class="section">
-        <div class="section-number">4</div>
-        <h2>Third-Party Sharing</h2>
-        <ul>
-            <li>User data is <strong>never shared with, sold to, rented to, or transferred to any third party.</strong></li>
-            <li>The app <strong>contains no advertisements</strong> and sends no data to ad networks.</li>
-            <li>The app <strong>contains no analytics or tracking SDK.</strong></li>
-            <li>Google Drive backup writes only to the user's own account; the developer cannot access this data.</li>
-        </ul>
-    </div>
-
-    <div class="section">
-        <div class="section-number">5</div>
-        <h2>Data Deletion and User Rights</h2>
-        <ul>
-            <li><strong>In-app deletion:</strong> Go to Settings → "Delete All My Data" to permanently delete all data. This clears the database, preferences, Google account connection, and pending background tasks.</li>
-            <li><strong>Uninstalling the app:</strong> Removing the app from your device automatically deletes all local data.</li>
-            <li><strong>Google Drive backups:</strong> Users can manually delete app data from Google Drive settings.</li>
-            <li><strong>Request via contact:</strong> Send a data deletion request to arcelektronik01@gmail.com. Requests are responded to within 7 business days.</li>
-        </ul>
-    </div>
-
-    <div class="section">
-        <div class="section-number">6</div>
-        <h2>Data Retention</h2>
-        <p>Data remains on the device until the user deletes it or uninstalls the app. No user data is stored on developer servers — the app operates entirely offline. Google Drive backups remain in the user's own account and can be deleted by the user.</p>
-    </div>
-
-    <div class="section">
-        <div class="section-number">7</div>
-        <h2>Children's Privacy</h2>
-        <p>This app is not directed at children. We do not knowingly collect personal data from anyone under 13 years of age. If we learn that a child has provided data, we will promptly delete it.</p>
-    </div>
-
-    <div class="section">
-        <div class="section-number">8</div>
-        <h2>Permissions</h2>
-        <table class="perm-table">
-            <thead><tr><th>Permission</th><th>Purpose</th><th>Required?</th></tr></thead>
-            <tbody>
-                <tr><td><code>READ_CONTACTS</code></td><td>Selecting customer info from contacts</td><td>Optional</td></tr>
-                <tr><td><code>CAMERA</code></td><td>Taking receipt/invoice photos</td><td>Optional</td></tr>
-                <tr><td><code>INTERNET</code></td><td>Google Drive backup</td><td>Not needed if backup is not used</td></tr>
-                <tr><td><code>POST_NOTIFICATIONS</code></td><td>Reminder and backup notifications</td><td>Optional (Android 13+)</td></tr>
-            </tbody>
-        </table>
-        <p style="margin-top:12px">All permissions are requested at runtime. If denied, the app continues to function without the related feature.</p>
-    </div>
-
-    <div class="section">
-        <div class="section-number">9</div>
-        <h2>Policy Changes</h2>
-        <p>When this privacy policy is updated, the new date will be published on this page. Users will be notified of significant changes through in-app notifications.</p>
-    </div>
-
-    <div class="contact-box">
-        <h2>📧 Contact</h2>
-        <p style="color:#a0aec0; margin-bottom:12px">For privacy-related questions:</p>
-        <a href="mailto:arcelektronik01@gmail.com">arcelektronik01@gmail.com</a>
-        <p class="dev">Developer: ARC</p>
-    </div>
-</div>
-
-</div>
-
-<div class="footer">
-    © 2026 ARC FIN. All rights reserved.
-</div>
-
-<script>
-function switchLang(lang) {
-    document.querySelectorAll('.lang-section').forEach(s => s.classList.remove('active'));
-    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('lang-' + lang).classList.add('active');
-    event.target.classList.add('active');
-}
-</script>
+</main>
 
 </body>
 </html>
