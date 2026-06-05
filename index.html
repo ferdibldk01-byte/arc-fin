@@ -218,8 +218,8 @@
 
   <div class="meta-kart">
     <div class="satir">
-      <div><strong>Sürüm / Version:</strong> 2.0</div>
-      <div><strong>Yürürlük / Effective:</strong> 2026-06-03</div>
+      <div><strong>Sürüm / Version:</strong> 2.1</div>
+      <div><strong>Yürürlük / Effective:</strong> 2026-06-05</div>
       <div><strong>Paket / Package:</strong> <code>com.arcdigitalasistan</code></div>
     </div>
   </div>
@@ -270,7 +270,7 @@
           <tr><td>Kamera (fiş/fatura fotoğrafı)</td><td>Belgeyi işleme iliştirme</td><td>Açık rıza</td><td>Hayır</td></tr>
           <tr><td>Google hesabı e-postası</td><td>Drive yedekleme kimlik doğrulaması</td><td>Açık rıza</td><td>Sadece kendi Drive'ınız</td></tr>
           <tr><td>Cihaz tercihleri (dil, tema, kilit)</td><td>Kişiselleştirme</td><td>Meşru menfaat</td><td>Hayır</td></tr>
-          <tr><td>Crash logları</td><td>Stabilite iyileştirme</td><td>Meşru menfaat</td><td>Google Play (opt-out)</td></tr>
+          <tr><td>Crash logları (Play Vitals)</td><td>Stabilite iyileştirme</td><td>Google Play meşru menfaati</td><td>Yalnızca Google Play geliştirici hesabı — bizim SDK'mız yok</td></tr>
         </tbody>
       </table>
     </div>
@@ -293,9 +293,9 @@
         <thead><tr><th>Bileşen</th><th>Yöntem</th><th>Standart</th></tr></thead>
         <tbody>
           <tr><td>Veritabanı şifrelemesi</td><td>SQLCipher</td><td>AES-256</td></tr>
-          <tr><td>Anahtar saklama</td><td>Android KeyStore (donanım destekli)</td><td>TEE / StrongBox</td></tr>
-          <tr><td>Yedek dosyası şifrelemesi</td><td>AES-256-GCM</td><td>NIST SP 800-38D</td></tr>
-          <tr><td>Uygulama tercihleri</td><td>EncryptedSharedPreferences</td><td>AES-256-SIV + AES-256-GCM</td></tr>
+          <tr><td>DB anahtarı saklama</td><td>Android KeyStore (donanım destekli)</td><td>TEE / StrongBox</td></tr>
+          <tr><td>Yedek dosyası şifrelemesi (.arcbak)</td><td>Kullanıcı parolası → PBKDF2 (HMAC-SHA256, 200.000 iter) → AES-256-GCM</td><td>NIST SP 800-132 / SP 800-38D</td></tr>
+          <tr><td>Drive hesabı &amp; metadata</td><td>EncryptedSharedPreferences</td><td>AES-256-SIV + AES-256-GCM</td></tr>
           <tr><td>Drive bağlantısı</td><td>OAuth 2.0 + drive.appdata</td><td>RFC 6749</td></tr>
           <tr><td>HTTPS</td><td>OkHttp + TLS 1.3</td><td>RFC 8446</td></tr>
         </tbody>
@@ -415,7 +415,7 @@
           <tr><td>Camera (receipt/invoice photo)</td><td>Attach document image</td><td>Consent</td><td>No</td></tr>
           <tr><td>Google account email</td><td>Drive backup authentication</td><td>Consent</td><td>Only your own Drive</td></tr>
           <tr><td>Device preferences (language, theme, lock)</td><td>Personalization</td><td>Legitimate interest</td><td>No</td></tr>
-          <tr><td>Crash logs</td><td>Stability improvement</td><td>Legitimate interest</td><td>Google Play (opt-out)</td></tr>
+          <tr><td>Crash logs (Play Vitals)</td><td>Stability improvement</td><td>Google Play's legitimate interest</td><td>Google Play developer account only — we ship no SDK</td></tr>
         </tbody>
       </table>
     </div>
@@ -438,9 +438,9 @@
         <thead><tr><th>Component</th><th>Method</th><th>Standard</th></tr></thead>
         <tbody>
           <tr><td>Database encryption</td><td>SQLCipher</td><td>AES-256</td></tr>
-          <tr><td>Key storage</td><td>Android KeyStore (hardware-backed)</td><td>TEE / StrongBox</td></tr>
-          <tr><td>Backup file encryption</td><td>AES-256-GCM</td><td>NIST SP 800-38D</td></tr>
-          <tr><td>App preferences</td><td>EncryptedSharedPreferences</td><td>AES-256-SIV + AES-256-GCM</td></tr>
+          <tr><td>DB key storage</td><td>Android KeyStore (hardware-backed)</td><td>TEE / StrongBox</td></tr>
+          <tr><td>Backup file encryption (.arcbak)</td><td>User password → PBKDF2 (HMAC-SHA256, 200,000 iter) → AES-256-GCM</td><td>NIST SP 800-132 / SP 800-38D</td></tr>
+          <tr><td>Drive account &amp; metadata</td><td>EncryptedSharedPreferences</td><td>AES-256-SIV + AES-256-GCM</td></tr>
           <tr><td>Drive connection</td><td>OAuth 2.0 + drive.appdata</td><td>RFC 6749</td></tr>
           <tr><td>HTTPS</td><td>OkHttp + TLS 1.3</td><td>RFC 8446</td></tr>
         </tbody>
@@ -539,7 +539,7 @@
 
   <footer class="alt-bilgi">
     <p>© 2026 ARC FIN · Tüm hakları saklıdır · All rights reserved</p>
-    <p style="margin-top: 4px;">Sürüm 2.0 · 2026-06-03</p>
+    <p style="margin-top: 4px;">Sürüm 2.1 · 2026-06-05</p>
   </footer>
 
 </main>
